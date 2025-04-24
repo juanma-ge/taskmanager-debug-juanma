@@ -17,22 +17,27 @@ class GestorActividades {
     fun menu() {
         var salir = false
         do {
-            salida.mostrarMenu()
-            when(salida.leerNum()) {
-                -1 -> salida.mostrar("\nOpcion no valida.")
-                1 -> servicio.crearEvento(pedirDescripcion(), pedirFecha(), pedirUbicacion())
-                2 -> crearTarea()
-                3 -> listarActividades()
-                4 -> asociarSubtarea()
-                5 -> cambiarEstadoTarea()
-                6 -> cerrarTarea()
-                7 -> crearUsuario()
-                8 -> asignarTareaAUsuario()
-                9 -> consultarTareasUsuario()
-                10 -> filtrarActividades()
-                11 -> consultarHistorialTarea()
-                12 -> salir = true
+            try{
+                salida.mostrarMenu()
+                when(salida.leerNum()) {
+                    -1 -> salida.mostrar("\nOpcion no valida.")
+                    1 -> servicio.crearEvento(pedirDescripcion(), pedirFecha(), pedirUbicacion())
+                    2 -> crearTarea()
+                    3 -> listarActividades()
+                    4 -> asociarSubtarea()
+                    5 -> cambiarEstadoTarea()
+                    6 -> cerrarTarea()
+                    7 -> crearUsuario()
+                    8 -> asignarTareaAUsuario()
+                    9 -> consultarTareasUsuario()
+                    10 -> filtrarActividades()
+                    11 -> consultarHistorialTarea()
+                    12 -> salir = true
+                }
+            }catch (e: java.lang.IllegalStateException){
+                salida.mostrar("$e")
             }
+
         } while(!salir)
     }
 
