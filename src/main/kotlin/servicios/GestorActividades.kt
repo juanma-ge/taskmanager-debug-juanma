@@ -139,7 +139,9 @@ class GestorActividades {
 
         if (tareas.isEmpty()) {
             salida.mostrar("\nNo hay tareas disponibles.")
+            println("Error no controlado si no hay try-catch")
             throw IllegalStateException("No hay tareas disponibles para seleccionar.")
+
         }
 
         salida.mostrar("\nSelecciona una tarea de la lista:")
