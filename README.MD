@@ -18,4 +18,3 @@ Para encontrar el error, también podemos utilizar un println y ver por consola 
 He puesto un punto de ruptura en el menú, aunque al final no fue del todo necesario, para ver si saltaba el error. El problema era que al no haber ninguna tarea daba error, haciendo que el programa se cierre.
 Para solucionarlo he implementado un try and catch en el menu de la aplicación, para si vuelve a dar el error, que el programa no se cierre.
 ![img_6.png](img_6.png)
-
