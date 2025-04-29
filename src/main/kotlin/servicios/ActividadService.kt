@@ -11,9 +11,9 @@ class ActividadService {
         repositorio.agregarEvento(evento)
     }
 
-    fun crearTarea(descripcion: String, etiquetas: String): Tarea {
+    fun crearTarea(descripcion: String, etiquetas: List<String>): Tarea {
         val tarea = Tarea.crearInstancia(descripcion)
-        etiquetas.split(";").forEach { tarea.agregarEtiqueta(it) }
+        etiquetas.forEach { tarea.agregarEtiqueta(it) }
         repositorio.agregarTarea(tarea)
         return tarea
     }

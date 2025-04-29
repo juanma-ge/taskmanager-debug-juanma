@@ -17,9 +17,9 @@ class GestorActividades {
     fun menu() {
         var salir = false
         do {
-            try{
+            try {
                 salida.mostrarMenu()
-                when(salida.leerNum()) {
+                when (salida.leerNum()) {
                     -1 -> salida.mostrar("\nOpcion no valida.")
                     1 -> servicio.crearEvento(pedirDescripcion(), pedirFecha(), pedirUbicacion())
                     2 -> crearTarea()
@@ -34,11 +34,11 @@ class GestorActividades {
                     11 -> consultarHistorialTarea()
                     12 -> salir = true
                 }
-            }catch (e: java.lang.IllegalStateException){
+            } catch (e: java.lang.IllegalStateException) {
                 salida.mostrar("$e")
             }
 
-        } while(!salir)
+        } while (!salir)
     }
 
     private fun consultarHistorialTarea() {
@@ -79,7 +79,7 @@ class GestorActividades {
         salida.mostrar("3. FINALIZADA")
 
         val estadoSeleccionado = salida.leerNum()
-        val nuevoEstado = when(estadoSeleccionado) {
+        val nuevoEstado = when (estadoSeleccionado) {
             1 -> Estado.ABIERTA
             2 -> Estado.EN_PROGRESO
             3 -> Estado.FINALIZADA
@@ -116,9 +116,9 @@ class GestorActividades {
         salida.mostrar("\nTarea creada con éxito y etiquetas asignadas.")
     }
 
-    private fun pedirEtiquetas(): String {
-        salida.mostrar("\nIntroduce las etiquetas (separadas por ';'):")
-        return salida.leerString()
+    private fun pedirEtiquetas(): List<String> {
+        salida.mostrarInput("Introduce las etiquetas (separadas por ';'):")
+        return salida.leerString().split(';').map { it.trim() }.filter { it.isNotEmpty() }
     }
 
     // Asociar una subtarea a una tarea principal
