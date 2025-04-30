@@ -42,7 +42,7 @@ lista limpia de etiquetas. Después de ajustar un par de pruebas para cubrir cas
 #### Imagen posterior al error
 ![](assets/etiqueta_solucion.png)
 
-### 4. Error al asignar una tarea ya finalizada
+### 4. Error al asignar una tarea ya finalizada (Elvira)
 
 Probando el programa, nos percatamos de que era posible asignar una tarea ya finalizada a un usuario, lo que no tendría mucho sentido.
 Para localizar exactamente dónde estaba el error, colocamos un punto de ruptura en la función de "asignarTarea()"
