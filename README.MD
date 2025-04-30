@@ -41,3 +41,26 @@ lista limpia de etiquetas. Después de ajustar un par de pruebas para cubrir cas
 
 #### Imagen posterior al error
 ![](assets/etiqueta_solucion.png)
+
+### 4. Error al asignar una tarea ya finalizada
+
+Probando el programa, nos percatamos de que era posible asignar una tarea ya finalizada a un usuario, lo que no tendría mucho sentido.
+Para localizar exactamente dónde estaba el error, colocamos un punto de ruptura en la función de "asignarTarea()"
+
+![puntoRuptura.png](assets/puntoRuptura.png)
+
+Aquí pudimos comprobar que asignaba la tarea directamente sin comprobar el estado de la tarea
+
+![estadoNoComprobado.png](assets/estadoNoComprobado.png)
+
+En esta captura se observa como se puede asignar una tarea finalizada:
+
+![tareaConError.png](assets/tareaConError.png)
+
+Para solucionar esto añadimos una comprobación en la que si el estado de la tarea es igual a finalizada, se saliera del programa retornando y mostrando un mensaje de error.
+
+![arreglagoError.png](assets/arregladoError.png)
+
+En esta captura se ve el error arreglado:
+
+![correcto.png](assets/correcto.png)

@@ -1,5 +1,6 @@
 package es.prog2425.taskmanager.servicios
 
+
 import es.prog2425.taskmanager.modelo.Actividad
 import es.prog2425.taskmanager.presentacion.Consola
 import es.prog2425.taskmanager.presentacion.Interfaz
@@ -8,7 +9,10 @@ import es.prog2425.taskmanager.modelo.Tarea
 import es.prog2425.taskmanager.modelo.Estado
 import es.prog2425.taskmanager.modelo.Evento
 
+
+
 class GestorActividades {
+
     private val salida: Interfaz = Consola()
     private val servicio = ActividadService()
     private val servicioUsuario: IUsuarioService = UsuarioService()
@@ -207,6 +211,9 @@ class GestorActividades {
     private fun asignarTareaAUsuario() {
         salida.mostrar("\nSelecciona la tarea a asignar: ")
         val tarea = obtenerTarea()
+
+
+
 
         salida.mostrar("\nIntroduce el nombre del usuario al que asignar la tarea: ")
         val nombreUsuario = salida.leerString()
