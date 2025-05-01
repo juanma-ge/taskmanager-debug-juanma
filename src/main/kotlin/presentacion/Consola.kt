@@ -45,8 +45,11 @@ class Consola: Interfaz {
         println("Listado de actividades:")
         println(separator)
         for (actividad in x) {
-            if (actividad::class.simpleName == "Evento") eventos.add(actividad as Evento)
-            if (actividad::class.simpleName == "Tarea") tareas.add(actividad as Tarea)
+            if (actividad is Evento) {
+                eventos.add(actividad)
+            } else if (actividad is Tarea) {
+                tareas.add(actividad)
+            }
         }
         println("Eventos:")
         for (evento in eventos) {

@@ -64,3 +64,27 @@ Para solucionar esto añadimos una comprobación en la que si el estado de la ta
 En esta captura se ve el error arreglado:
 
 ![correcto.png](assets/correcto.png)
+
+### 5. Error al intentar cerrar una tarea
+
+![img.png](assets/errorGonzalo.png)
+
+Estaba trabajando en la clase Consola, concretamente en el método que muestro arriba, y encontré este error.
+
+El método provocaba un cast forzado de todos los elementos de la lista a Evento y Tarea, sin comprobar el tipo.
+
+Para solucionar el error, sustituimos el bloque de error por el siguiente para evitarlo
+
+````kotlin
+for (actividad in x) {
+    if (actividad is Evento) {
+        eventos.add(actividad)
+    } else if (actividad is Tarea) {
+        tareas.add(actividad)
+    }
+}
+````
+
+![img.png](assets/errorArreglado.png)
+
+Quedando así el error arreglado y corregido.
