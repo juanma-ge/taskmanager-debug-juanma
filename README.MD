@@ -71,6 +71,11 @@ En esta captura se ve el error arreglado:
 
 Estaba trabajando en la clase Consola, concretamente en el método que muestro arriba, y encontré este error.
 
+Al agregar varias tareas, forzaba que ambas se colocasen tanto en eventos como en tareas
+
+![img.png](assets/depurandoGonzalo.png)
+
+He colocado varios breakpoints donde he encontrado el error para comprobar que es lo que causaba esto, y me he dado cuenta de lo siguiente:
 El método provocaba un cast forzado de todos los elementos de la lista a Evento y Tarea, sin comprobar el tipo.
 
 Para solucionar el error, sustituimos el bloque de error por el siguiente para evitarlo
