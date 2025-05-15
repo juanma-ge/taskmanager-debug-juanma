@@ -1,19 +1,18 @@
 package es.prog2425.taskmanager.servicios
 
 import es.prog2425.taskmanager.datos.ActividadRepository
+import es.prog2425.taskmanager.datos.IActividadRepository
 import es.prog2425.taskmanager.modelo.*
 
-class ActividadService {
-    private val repositorio = ActividadRepository()
+class ActividadService(val repositorio: IActividadRepository = ActividadRepository()) {
 
     fun crearEvento(descripcion: String, fecha: String, ubicacion: String) {
         val evento = Evento.crearInstancia(descripcion, fecha, ubicacion)
         repositorio.agregarEvento(evento)
     }
 
-    fun crearTarea(descripcion: String, etiquetas: List<String>): Tarea {
+    fun crearTarea(descripcion: String): Tarea {
         val tarea = Tarea.crearInstancia(descripcion)
-        etiquetas.forEach { tarea.agregarEtiqueta(it) }
         repositorio.agregarTarea(tarea)
         return tarea
     }
@@ -26,13 +25,6 @@ class ActividadService {
         tarea.cambiarEstadoConHistorial(nuevoEstado)
     }
 
-    fun cerrarTarea(tarea: Tarea) {
-        tarea.cerrarConHistorial()
-    }
-
-    fun asignarTarea(tarea: Tarea, usuario: Usuario) {
-        tarea.asignarUsuarioConHistorial(usuario)
-    }
 
     fun listarActividades(): List<Actividad> = repositorio.obtenerActividades()
 }
