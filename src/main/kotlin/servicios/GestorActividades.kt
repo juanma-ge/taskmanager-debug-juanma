@@ -1,18 +1,15 @@
 package es.prog2425.taskmanager.servicios
 
 
-import es.prog2425.taskmanager.modelo.Actividad
+import es.prog2425.taskmanager.modelo.*
 import es.prog2425.taskmanager.presentacion.Consola
 import es.prog2425.taskmanager.presentacion.Interfaz
 import es.prog2425.taskmanager.utils.Utilidades
-import es.prog2425.taskmanager.modelo.Tarea
-import es.prog2425.taskmanager.modelo.Estado
-import es.prog2425.taskmanager.modelo.Evento
-
 
 
 class GestorActividades {
 
+    private val historial: Historial = Historial()
     private val salida: Interfaz = Consola()
     private val servicio = ActividadService()
     private val servicioUsuario: IUsuarioService = UsuarioService()
@@ -23,32 +20,77 @@ class GestorActividades {
         do {
             try {
                 salida.mostrarMenu()
-                when (salida.leerNum()) {
-                    -1 -> salida.mostrar("\nOpcion no valida.")
-                    1 -> servicio.crearEvento(pedirDescripcion(), pedirFecha(), pedirUbicacion())
-                    2 -> crearTarea()
-                    3 -> listarActividades()
-                    4 -> asociarSubtarea()
-                    5 -> cambiarEstadoTarea()
-                    6 -> cerrarTarea()
-                    7 -> crearUsuario()
-                    8 -> asignarTareaAUsuario()
-                    9 -> consultarTareasUsuario()
-                    10 -> filtrarActividades()
-                    11 -> consultarHistorialTarea()
-                    12 -> salir = true
-                }
-            } catch (e: java.lang.IllegalStateException) {
+                val opcion = salida.leerNum()
+                procesarOpcion(opcion)?.let { salir = it }
+            } catch (e: IllegalStateException) {
                 salida.mostrar("$e")
             }
-
         } while (!salir)
     }
+
+    private fun procesarOpcion(opcion: Int): Boolean? {
+        return when (opcion) {
+            -1 -> {
+                salida.mostrar("\nOpción no válida.")
+                null
+            }
+            1 -> {
+                servicio.crearEvento(descripcion = pedirDescripcion(), fecha = pedirFecha(), ubicacion = pedirUbicacion())
+                null
+            }
+            2 -> {
+                crearTarea()
+                null
+            }
+            3 -> {
+                listarActividades()
+                null
+            }
+            4 -> {
+                asociarSubtarea()
+                null
+            }
+            5 -> {
+                cambiarEstadoTarea()
+                null
+            }
+            6 -> {
+                cerrarTarea()
+                null
+            }
+            7 -> {
+                crearUsuario()
+                null
+            }
+            8 -> {
+                asignarTareaAUsuario()
+                null
+            }
+            9 -> {
+                consultarTareasUsuario()
+                null
+            }
+            10 -> {
+                filtrarActividades()
+                null
+            }
+            11 -> {
+                consultarHistorialTarea()
+                null
+            }
+            12 -> true // salir
+            else -> {
+                salida.mostrar("\nOpción no válida.")
+                null
+            }
+        }
+    }
+
 
     private fun consultarHistorialTarea() {
         salida.mostrar("\nSelecciona la tarea para ver su historial:")
         val tarea = obtenerTarea()
-        val historial = tarea.obtenerHistorial()
+        val historial = historial.obtener()
         if (historial.isEmpty()) {
             salida.mostrar("\nLa tarea no tiene historial.")
         } else {

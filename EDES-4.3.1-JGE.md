@@ -12,3 +12,6 @@ He importado el detekt, aunque he tenido que cambiar la versión jdk, ya que con
 ![img.png](img.png)
 ![img_1.png](img_1.png)
 
+## Soluciones
+Solución del primer error ([TooManyFunctions]): https://github.com/juanma-ge/taskmanager-debug-juanma/commit/4cbb1482628713a5e1ea053d29caf50da8887615
+
