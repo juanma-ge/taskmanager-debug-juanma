@@ -7,17 +7,10 @@ class Tarea private constructor(descripcion: String): Actividad(descripcion) {
     var estado: Estado = Estado.ABIERTA
     private val subtareas: MutableList<Tarea> = mutableListOf()
     private var usuarioAsignado: Usuario? = null
-    private val historial = mutableListOf<Pair<String, String>>()
+    private val historial = Historial()
 
     companion object {
         fun crearInstancia(descripcion: String) = Tarea(descripcion)
-    }
-
-    fun obtenerHistorial(): List<Pair<String, String>> = historial.toList()
-
-    fun registrarAccion(descripcion: String) {
-        val fecha = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))
-        historial.add(Pair(fecha, descripcion))
     }
 
     fun cambiarEstadoConHistorial(nuevoEstado: Estado) {
@@ -25,7 +18,7 @@ class Tarea private constructor(descripcion: String): Actividad(descripcion) {
             throw IllegalStateException("No se puede finalizar la tarea con subtareas abiertas.")
         }
         estado = nuevoEstado
-        registrarAccion("Estado cambiado a $nuevoEstado")
+        historial.registrar("Estado cambiado a $nuevoEstado")
     }
 
     fun cerrarConHistorial() {
@@ -33,12 +26,12 @@ class Tarea private constructor(descripcion: String): Actividad(descripcion) {
             throw IllegalStateException("No se puede cerrar la tarea porque tiene subtareas abiertas.")
         }
         estado = Estado.FINALIZADA
-        registrarAccion("Tarea cerrada")
+        historial.registrar("Tarea cerrada")
     }
 
     fun asignarUsuarioConHistorial(usuario: Usuario) {
         usuarioAsignado = usuario
-        registrarAccion("Tarea asignada a ${usuario.nombre}")
+        historial.registrar("Tarea asignada a ${usuario.nombre}")
     }
 
     fun agregarSubtarea(subtarea: Tarea) {
