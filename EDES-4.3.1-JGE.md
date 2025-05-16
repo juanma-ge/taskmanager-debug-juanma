@@ -7,6 +7,11 @@ Voy a arreglar estos cinco errores a continuación:
 - C:\Users\juanm\IdeaProjects\taskmanager-debug-juanma\src\main\kotlin\servicios\GestorActividades.kt:111:18: The caught exception is swallowed. The original exception could be lost. [SwallowedException]
 - C:\Users\juanm\IdeaProjects\taskmanager-debug-juanma\src\main\kotlin\datos\ActividadRepository.kt:22:2: The file C:\Users\juanm\IdeaProjects\taskmanager-debug-juanma\src\main\kotlin\datos\ActividadRepository.kt is not ending with a new line. [NewLineAtEndOfFile]
 
+# Detekt
+- Es una herramienta que revisa tu código para revisar errores o malas prácticas.
+- Trata de mantener cierta calidad y evita futuros problemas difíciles de detectar.
+- He insertado servicios 
+
 ## Descarga Detekt
 He importado el detekt, aunque he tenido que cambiar la versión jdk, ya que con las versiones más actuales no funcionaba.
 ![img.png](img.png)
@@ -18,7 +23,27 @@ Solución del primer error ([TooManyFunctions]): https://github.com/juanma-ge/ta
 Solución del segundo error ([CyclomaticComplexMethod]): https://github.com/juanma-ge/taskmanager-debug-juanma/commit/096ff322bdd17c61c4fdcee6d78294b53ebf5a64
 - Este error decía que la clase GestorActividades tenía demasiadas funciones en su menú y era demasiado "complejo", así que lo he separado en dos, para reducir la cantidad de for, while, etc.
 Solución del tercer error ([TooManyFunctions]): https://github.com/juanma-ge/taskmanager-debug-juanma/commit/6894f5a25dc64d372bda192436309534bf013f41
-- Como en el primer error, este dice que hay demasiadas funciones en la clase, diex más concretamente, así que las he dividido en dos clases más.
+- Como en el primer error, este dice que hay demasiadas funciones en la clase, diez más concretamente, así que las he dividido en dos clases más.
 Solución del cuarto error ([SwallowedException]): https://github.com/juanma-ge/taskmanager-debug-juanma/commit/50bdc0a8dfd4a1400d90a38f0c4e7d758714c61c
-- Este error establecía que el catch del try and catch mostraba poca información e caso de error, así que lo he cambiado para que muestre un error distinto algo más largo y elaborado.
-Solución del quinto error ([InvalidPackageDeclaration]): 
+- Este error establecía que el catch del try and catch mostraba poca información en caso de error, así que lo he cambiado para que muestre un error distinto algo más largo y elaborado.
+Solución del quinto error ([InvalidPackageDeclaration]): https://github.com/juanma-ge/taskmanager-debug-juanma/commit/fd0150a6cb581401fe543cc43a4dbf0e3b517665
+- Este error requería que al final del código, tuviera una nueva línea en blanco antes de que la clase termine.
+
+## Preguntas 
+
+- Responde a las preguntas:
+
+- [1]
+- 1.a ¿Qué herramienta has usado, y para qué sirve?
+- 1.b ¿Cuáles son sus características principales?
+- 1.c ¿Qué beneficios obtengo al utilizar dicha herramienta?
+- [2]
+- 2.a De los errores/problemas que la herramienta ha detectado y te ha ayudado a solucionar, ¿cual es el que te ha parecido que ha mejorado más tu código?
+- 2.b ¿La solución que se le ha dado al error/problema la has entendido y te ha parecido correcta?
+- 2.c ¿Por qué se ha producido ese error/problema?
+- [3]
+- 3.a ¿Qué posibilidades de configuración tiene la herramienta?
+- 3.b De esas posibilidades de configuración, ¿cuál has configurado para que sea distinta a la que viene por defecto?
+- 3.c Pon un ejemplo de como ha impactado en tu código, enlazando al código anterior al cambio, y al posterior al cambio,
+- [4]
+- 4 ¿Qué conclusiones sacas después del uso de estas herramientas?
