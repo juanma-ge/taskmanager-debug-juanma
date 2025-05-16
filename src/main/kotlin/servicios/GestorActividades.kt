@@ -81,7 +81,7 @@ class GestorActividades() {
                 consultarHistorialTarea()
                 null
             }
-            12 -> true // salir
+            12 -> true
             else -> {
                 salida.mostrar("\nOpción no válida.")
                 null
