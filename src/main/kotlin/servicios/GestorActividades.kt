@@ -7,11 +7,14 @@ import es.prog2425.taskmanager.presentacion.Interfaz
 import es.prog2425.taskmanager.utils.Utilidades
 
 
-class GestorActividades {
+class GestorActividades() {
 
     private val historial: Historial = Historial()
+    private val servicios: IUsuarioService = UsuarioService()
     private val salida: Interfaz = Consola()
     private val servicio = ActividadService()
+    private val ta = TrabajarTareas(salida, servicio)
+    private val us = TrabajarUsuarios(salida, servicios)
     private val servicioUsuario: IUsuarioService = UsuarioService()
 
     // Muestra el menu principal
@@ -39,7 +42,7 @@ class GestorActividades {
                 null
             }
             2 -> {
-                crearTarea()
+                ta.crearTarea()
                 null
             }
             3 -> {
@@ -47,27 +50,27 @@ class GestorActividades {
                 null
             }
             4 -> {
-                asociarSubtarea()
+                ta.asociarSubtarea()
                 null
             }
             5 -> {
-                cambiarEstadoTarea()
+                ta.cambiarEstadoTarea()
                 null
             }
             6 -> {
-                cerrarTarea()
+                ta.cerrarTarea()
                 null
             }
             7 -> {
-                crearUsuario()
+                us.crearUsuario()
                 null
             }
             8 -> {
-                asignarTareaAUsuario()
+                us.asignarTareaAUsuario()
                 null
             }
             9 -> {
-                consultarTareasUsuario()
+                us.consultarTareasUsuario()
                 null
             }
             10 -> {
@@ -114,71 +117,13 @@ class GestorActividades {
         }
     }
 
-    // Cambiar el estado de una tarea
-    private fun cambiarEstadoTarea() {
-        salida.mostrar("\nSelecciona la tarea cuyo estado deseas cambiar:")
-        val tarea = obtenerTarea()
-
-        salida.mostrar("\nElige el nuevo estado para la tarea:")
-        salida.mostrar("1. ABIERTA")
-        salida.mostrar("2. EN PROGRESO")
-        salida.mostrar("3. FINALIZADA")
-
-        val estadoSeleccionado = salida.leerNum()
-        val nuevoEstado = when (estadoSeleccionado) {
-            1 -> Estado.ABIERTA
-            2 -> Estado.EN_PROGRESO
-            3 -> Estado.FINALIZADA
-            else -> {
-                salida.mostrar("\nOpción no válida. El estado no ha sido cambiado.")
-                return
-            }
-        }
-
-        try {
-            servicio.cambiarEstadoTarea(tarea, nuevoEstado)
-            salida.mostrar("\nEstado de la tarea cambiado exitosamente a ${nuevoEstado.name}.")
-        } catch (e: IllegalStateException) {
-            salida.mostrar("\nError: ${e.message}")
-        }
-    }
-
-    // Cerrar tarea (verificando que todas las subtareas estén cerradas)
-    private fun cerrarTarea() {
-        salida.mostrar("\nSelecciona la tarea a cerrar:")
-        val tarea = obtenerTarea()
-        try {
-            tarea.cerrar()
-            salida.mostrar("\nTarea cerrada exitosamente.")
-        } catch (e: IllegalStateException) {
-            salida.mostrar("\nNo se puede cerrar la tarea porque tiene subtareas abiertas.")
-        }
-    }
-
-    private fun crearTarea() {
-        val descripcion = pedirDescripcion()
-        servicio.crearTarea(descripcion)
-        salida.mostrar("\nTarea creada con éxito y etiquetas asignadas.")
-    }
-
     private fun pedirEtiquetas(): List<String> {
         salida.mostrarInput("Introduce las etiquetas (separadas por ';'):")
         return salida.leerString().split(';').map { it.trim() }.filter { it.isNotEmpty() }
     }
 
-    // Asociar una subtarea a una tarea principal
-    private fun asociarSubtarea() {
-        salida.mostrar("\nSelecciona la tarea principal:")
-        val tareaPrincipal = obtenerTarea()
-        salida.mostrar("\nDescribe la subtarea a asociar:")
-        val descripcionSubtarea = pedirDescripcion()
-        val subtarea = servicio.crearTarea(descripcionSubtarea)
-        servicio.asociarSubtarea(tareaPrincipal, subtarea)
-        salida.mostrar("\nSubtarea asociada a la tarea principal.")
-    }
-
     // Obtener tarea por ID o descripción
-    private fun obtenerTarea(): Tarea {
+    fun obtenerTarea(): Tarea {
         // Listamos todas las tareas para que el usuario vea y elija
         val tareas = servicio.listarActividades().filterIsInstance<Tarea>()
 
@@ -210,7 +155,7 @@ class GestorActividades {
         return tareaSeleccionada
     }
 
-    private fun pedirDescripcion(): String {
+    fun pedirDescripcion(): String {
         while (true) {
             salida.mostrar("\nIntroduce la descripcion")
             salida.mostrarInput("> ")
@@ -242,31 +187,6 @@ class GestorActividades {
         }
     }
 
-    private fun crearUsuario() {
-        salida.mostrar("\nIntroduce el nombre del nuevo usuario: ")
-        val nombre = salida.leerString()
-        servicioUsuario.crearUsuario(nombre)
-        salida.mostrar("\nUsuario '$nombre' creado con éxito.")
-    }
-
-    private fun asignarTareaAUsuario() {
-        salida.mostrar("\nSelecciona la tarea a asignar: ")
-        val tarea = obtenerTarea()
-
-
-
-
-        salida.mostrar("\nIntroduce el nombre del usuario al que asignar la tarea: ")
-        val nombreUsuario = salida.leerString()
-
-        val usuario = servicioUsuario.obtenerUsuarioPorNombre(nombreUsuario)
-        if (usuario != null) {
-            servicioUsuario.asignarTareaAUsuario(usuario, tarea)
-            salida.mostrar("\nTarea asignada correctamente a $nombreUsuario.")
-        } else {
-            salida.mostrar("\nNo se encontró un usuario con ese nombre.")
-        }
-    }
 
     private fun filtrarActividades() {
         salida.mostrar("\nFiltrar actividades por:")
@@ -359,23 +279,4 @@ class GestorActividades {
         }
     }
 
-    private fun consultarTareasUsuario() {
-        salida.mostrar("\nIntroduce el nombre del usuario para consultar sus tareas: ")
-        val nombreUsuario = salida.leerString()
-
-        val usuario = servicioUsuario.obtenerUsuarioPorNombre(nombreUsuario)
-        if (usuario != null) {
-            val tareas = servicioUsuario.obtenerTareasPorUsuario(usuario)
-            if (tareas.isEmpty()) {
-                salida.mostrar("\nEl usuario no tiene tareas asignadas.")
-            } else {
-                salida.mostrar("\nTareas asignadas a $nombreUsuario:")
-                tareas.forEach { tarea ->
-                    salida.mostrar(tarea.obtenerDetalle())
-                }
-            }
-        } else {
-            salida.mostrar("\nNo se encontró un usuario con ese nombre.")
-        }
-    }
 }
