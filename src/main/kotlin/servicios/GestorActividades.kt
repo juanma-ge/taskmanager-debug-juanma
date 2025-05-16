@@ -26,7 +26,8 @@ class GestorActividades() {
                 val opcion = salida.leerNum()
                 procesarOpcion(opcion)?.let { salir = it }
             } catch (e: IllegalStateException) {
-                salida.mostrar("$e")
+                salida.mostrar("Error: ${e.message}")
+                e.printStackTrace()
             }
         } while (!salir)
     }

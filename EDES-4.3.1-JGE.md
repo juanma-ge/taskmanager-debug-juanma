@@ -17,4 +17,6 @@ Solución del primer error ([TooManyFunctions]): https://github.com/juanma-ge/ta
 - El error establecía que tenía demasiadas funciones en él, 13, y no pueden ser más de 11, así que he creado otra clase "historial" y he metido as funciones que tenían que ver con el historial.
 Solución del segundo error ([CyclomaticComplexMethod]): https://github.com/juanma-ge/taskmanager-debug-juanma/commit/096ff322bdd17c61c4fdcee6d78294b53ebf5a64
 - Este error decía que la clase GestorActividades tenía demasiadas funciones en su menú y era demasiado "complejo", así que lo he separado en dos, para reducir la cantidad de for, while, etc.
-Solución del tercer error ([TooManyFunctions]): 
+Solución del tercer error ([TooManyFunctions]): https://github.com/juanma-ge/taskmanager-debug-juanma/commit/6894f5a25dc64d372bda192436309534bf013f41
+- Como en el primer error, este dice que hay demasiadas funciones en la clase, diex más concretamente, así que las he dividido en dos clases más.
+Solución del cuarto error ([SwallowedException]): 
