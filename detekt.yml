@@ -636,6 +636,7 @@ style:
     excludeImportStatements: true
     excludeCommentStatements: false
     excludeRawStrings: true
+    maxLineLength: 100
   MayBeConst:
     active: true
   ModifierOrder:

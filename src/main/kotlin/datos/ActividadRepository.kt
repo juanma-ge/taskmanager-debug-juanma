@@ -19,4 +19,5 @@ class ActividadRepository: IActividadRepository {
 
     // Devuelve una lista con todas las actividades
     override fun obtenerActividades(): List<Actividad> = listaActividades
+
 }
