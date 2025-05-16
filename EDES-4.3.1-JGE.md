@@ -34,16 +34,26 @@ Solución del quinto error ([InvalidPackageDeclaration]): https://github.com/jua
 - Responde a las preguntas:
 
 - [1]
-- 1.a ¿Qué herramienta has usado, y para qué sirve?
+- 1.a ¿Qué herramienta has usado, y para qué sirve? 
+- He utilizado Detekt, una herramienta de análisis para Kotlin. Sirve para detectar errores o malas prácticas.
 - 1.b ¿Cuáles son sus características principales?
+- Análisis y detección de código, uso de gradle y plugins, y generación de informes de los errores detectados.
 - 1.c ¿Qué beneficios obtengo al utilizar dicha herramienta?
+- Te ayuda a detectar errores o aspectos mejorables de tu código más rápida y fácilmente.
 - [2]
-- 2.a De los errores/problemas que la herramienta ha detectado y te ha ayudado a solucionar, ¿cual es el que te ha parecido que ha mejorado más tu código?
+- 2.a De los errores/problemas que la herramienta ha detectado y te ha ayudado a solucionar, ¿cuál es el que te ha parecido que ha mejorado más tu código?
+- El tercero, ya que ha pasado de una clase tener 21 funciones a solo 11, lo cual ha sido bastante optimizada.
 - 2.b ¿La solución que se le ha dado al error/problema la has entendido y te ha parecido correcta?
+- Sí, me ha ayudado a solucionarlo y me ha parecido útil.
 - 2.c ¿Por qué se ha producido ese error/problema?
+- Como he dicho antes, dicha clase estaba sobrecargada de funciones.
 - [3]
 - 3.a ¿Qué posibilidades de configuración tiene la herramienta?
+- Número máximo de funciones por archivo, límite de líneas, reglas de estilo o rutas de los archivos, las cuales deben de ser correctas.
 - 3.b De esas posibilidades de configuración, ¿cuál has configurado para que sea distinta a la que viene por defecto?
+- He cambiado "TooManyFunctions", para que permita una más, es decir 12.
 - 3.c Pon un ejemplo de como ha impactado en tu código, enlazando al código anterior al cambio, y al posterior al cambio,
+- Ahora si debo de volver a hacer un cambio como antes, tendré que mover menos funciones y clases para cumplir con el objetivo.
 - [4]
 - 4 ¿Qué conclusiones sacas después del uso de estas herramientas?
+- Me parece una herramienta más que útil no solo para corregir errores o cumplir con buenas prácticas, sino que también para aprender de ellas y mejorar tu código para futuros proyectos.

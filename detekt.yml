@@ -636,7 +636,6 @@ style:
     excludeImportStatements: true
     excludeCommentStatements: false
     excludeRawStrings: true
-    maxLineLength: 100
   MayBeConst:
     active: true
   ModifierOrder:
@@ -785,3 +784,7 @@ style:
     active: true
     excludeImports:
       - 'java.util.*'
+  TooManyFunctions:
+    active: true
+    thresholdInClasses: 12
+
