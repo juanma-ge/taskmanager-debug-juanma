@@ -7,10 +7,11 @@ Voy a arreglar estos cinco errores a continuación:
 - C:\Users\juanm\IdeaProjects\taskmanager-debug-juanma\src\main\kotlin\servicios\GestorActividades.kt:111:18: The caught exception is swallowed. The original exception could be lost. [SwallowedException]
 - C:\Users\juanm\IdeaProjects\taskmanager-debug-juanma\src\main\kotlin\datos\ActividadRepository.kt:22:2: The file C:\Users\juanm\IdeaProjects\taskmanager-debug-juanma\src\main\kotlin\datos\ActividadRepository.kt is not ending with a new line. [NewLineAtEndOfFile]
 
-# Detekt
+# Qué es Detekt y conclusión
 - Es una herramienta que revisa tu código para revisar errores o malas prácticas.
 - Trata de mantener cierta calidad y evita futuros problemas difíciles de detectar.
-- He insertado servicios 
+- Gracias a él he detectado varios factores a corregir en mi proyecto.
+- Lo considero un elemento muy útil no solo para lo previamente dicho, sino que también para mejorar tu código para futuros proyectos. 
 
 ## Descarga Detekt
 He importado el detekt, aunque he tenido que cambiar la versión jdk, ya que con las versiones más actuales no funcionaba.
