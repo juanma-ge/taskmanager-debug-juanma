@@ -13,12 +13,6 @@ abstract class Actividad(val descripcion: String) {
         id = GeneradorID().generarId(fechaCreacion)
     }
 
-    fun agregarEtiqueta(etiqueta: String) {
-        if (etiqueta.isNotBlank()) {
-            etiquetas.add(etiqueta.trim())
-        }
-    }
-
     open fun obtenerDetalle(): String {
         val etiquetasStr = if (etiquetas.isNotEmpty()) "Etiquetas: ${etiquetas.joinToString(", ")}" else "Sin etiquetas"
         return "Descripción: $descripcion\n$etiquetasStr"

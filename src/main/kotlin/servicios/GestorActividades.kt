@@ -7,7 +7,7 @@ import es.prog2425.taskmanager.presentacion.Interfaz
 import es.prog2425.taskmanager.utils.Utilidades
 
 
-class GestorActividades {
+class GestorActividades() {
 
     private val historial: Historial = Historial()
     private val servicios: IUsuarioService = UsuarioService()
@@ -116,11 +116,6 @@ class GestorActividades {
                 salida.mostrar(actividad.obtenerDetalle())
             }
         }
-    }
-
-    private fun pedirEtiquetas(): List<String> {
-        salida.mostrarInput("Introduce las etiquetas (separadas por ';'):")
-        return salida.leerString().split(';').map { it.trim() }.filter { it.isNotEmpty() }
     }
 
     // Obtener tarea por ID o descripción
