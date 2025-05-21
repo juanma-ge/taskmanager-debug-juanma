@@ -12,5 +12,16 @@
 ![img_3.png](img_3.png)
 - Al igual que el anterior, los dos siguientes establecen el mismo tipo de error, aunque en distintos sitios del programa.
 - El error dice que ciertas funciones podrían ser privadas, lo cual no afectaría negativamente a código, al contrario.
-- Indica que la visibilidad no está bien usada. Se corrigió refactorizando con Make 'x' 'private'.
-- ![img_4.png](img_4.png)
+- Indica que la visibilidad no está bien usada. Se corrigió refactorizando con 'Make 'x' 'private''.
+![img_4.png](img_4.png)
+
+## Preguntas a responder
+- [1]
+- 1.a ¿Qué code smell y patrones de refactorización has aplicado?
+- He utilizado el analizador de código del IDE y he refactorizado tres tipos distintos de error.
+- 'Remove empty primary constructor', 'Function is never used' y 'Could be private', a los cuales he aplicado; eliminación de constructor primario, 'Safe delete' y 'Make 'x' 'private'', respectivamente.
+- 1.b Teniendo en cuenta aquella funcionalidad que tiene pruebas unitarias, selecciona un patrón de refactorización de los que has aplicado y que están cubierto por los test unitarios. ¿Porque mejora o no mejora tu código? Asegurate de poner enlaces a tu código
+- [2]
+- 2.a Describe el proceso que sigues para asegurarte que la refactorización no afecta a código que ya tenias desarrollado.
+- [3]
+- 3.a ¿Qué funcionalidad del IDE has usado para aplicar la refactorización seleccionada? Si es necesario, añade capturas de pantalla para identificar la funcionalidad.
