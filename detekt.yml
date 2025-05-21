@@ -784,7 +784,4 @@ style:
     active: true
     excludeImports:
       - 'java.util.*'
-  TooManyFunctions:
-    active: true
-    thresholdInClasses: 12
 
