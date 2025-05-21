@@ -12,5 +12,5 @@
 ![img_3.png](img_3.png)
 - Al igual que el anterior, los dos siguientes establecen el mismo tipo de error, aunque en distintos sitios del programa.
 - El error dice que ciertas funciones podrían ser privadas, lo cual no afectaría negativamente a código, al contrario.
-- Indica que la visibilidad no está bien usada.
+- Indica que la visibilidad no está bien usada. Se corrigió refactorizando con Make 'x' 'private'.
 - ![img_4.png](img_4.png)

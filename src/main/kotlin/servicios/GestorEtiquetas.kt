@@ -10,4 +10,5 @@ class GestorEtiquetas {
             .map { it.trim() }
             .filter { it.isNotEmpty() }
     }
+
 }
