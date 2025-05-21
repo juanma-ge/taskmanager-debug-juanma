@@ -7,7 +7,7 @@ import es.prog2425.taskmanager.presentacion.Interfaz
 import es.prog2425.taskmanager.utils.Utilidades
 
 
-class GestorActividades() {
+class GestorActividades {
 
     private val historial: Historial = Historial()
     private val servicios: IUsuarioService = UsuarioService()
