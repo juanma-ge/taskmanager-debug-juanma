@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.0.10"
     id("io.gitlab.arturbosch.detekt") version "1.23.0"
+    id("org.jetbrains.dokka") version "1.9.0"
 }
 
 detekt {
@@ -29,4 +30,18 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(17)
+}
+
+tasks.dokkaHtml {
+    outputDirectory.set(file("$buildDir/dokka/html"))
+
+    dokkaSourceSets {
+        named("main") {
+            moduleName.set("Mi Proyecto Kotlin")
+            includes.from("README.md")
+            displayName.set("Main")
+            reportUndocumented.set(true)
+            skipEmptyPackages.set(true)
+        }
+    }
 }
