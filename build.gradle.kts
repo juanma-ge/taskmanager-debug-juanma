@@ -1,14 +1,7 @@
 plugins {
     kotlin("jvm") version "2.0.10"
-    id("io.gitlab.arturbosch.detekt") version "1.23.0"
-    id("org.jetbrains.dokka") version "1.9.0"
+    id("org.jetbrains.dokka") version "2.0.0"
 }
-
-detekt {
-    config = files("detekt.yml")
-    buildUponDefaultConfig = true
-}
-
 
 group = "prog2425.dam1.prueba-calc-propio"
 version = "1.0-SNAPSHOT"
@@ -33,12 +26,11 @@ kotlin {
 }
 
 tasks.dokkaHtml {
-    outputDirectory.set(file("$buildDir/dokka/html"))
+    moduleName.set("TaskManager")
 
     dokkaSourceSets {
         named("main") {
             moduleName.set("Mi Proyecto Kotlin")
-            includes.from("README.md")
             displayName.set("Main")
             reportUndocumented.set(true)
             skipEmptyPackages.set(true)
