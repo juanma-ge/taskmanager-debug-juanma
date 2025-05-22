@@ -14,7 +14,17 @@ class TrabajarTareas(val salida: Interfaz, val servicio: ActividadService) {
     }
 
 
-    // Cambiar el estado de una tarea
+    /**
+     * Cambia el estado de una tarea seleccionada por el usuario.
+     *
+     * Muestra un menú interactivo para:
+     * 1. Seleccionar una tarea existente.
+     * 2. Elegir un nuevo estado (ABIERTA, EN_PROGRESO o FINALIZADA).
+     * 3. Actualizar el estado mediante el servicio correspondiente.
+     *
+     * @throws IllegalStateException Si el cambio de estado no es válido (ej: transición no permitida).
+     * @sample Estado.ABIERTA, Estado.EN_PROGRESO, Estado.FINALIZADA
+     */
     fun cambiarEstadoTarea() {
         salida.mostrar("\nSelecciona la tarea cuyo estado deseas cambiar:")
         val tarea = ge.obtenerTarea()
@@ -44,7 +54,14 @@ class TrabajarTareas(val salida: Interfaz, val servicio: ActividadService) {
     }
 
 
-    // Cerrar tarea (verificando que todas las subtareas estén cerradas)
+    /**
+     * Cierra una tarea seleccionada por el usuario.
+     *
+     * - La tarea solo se cierra si no tiene subtareas abiertas.
+     * - Muestra mensajes de éxito o error según corresponda.
+     *
+     * @throws IllegalStateException Si la tarea tiene subtareas abiertas (no se puede cerrar).
+     */
     fun cerrarTarea() {
         salida.mostrar("\nSelecciona la tarea a cerrar:")
         val tarea = ge.obtenerTarea()
@@ -56,7 +73,16 @@ class TrabajarTareas(val salida: Interfaz, val servicio: ActividadService) {
         }
     }
 
-    // Asociar una subtarea a una tarea principal
+    /**
+     * Asocia una nueva subtarea a una tarea principal existente.
+     *
+     * Flujo:
+     * 1. Selecciona una tarea principal.
+     * 2. Pide la descripción de la subtarea.
+     * 3. Crea la subtarea y la asocia a la tarea principal mediante el servicio.
+     *
+     * @sample ge.pedirDescripcion() Solicita al usuario la descripción de la subtarea.
+     */
     fun asociarSubtarea() {
         salida.mostrar("\nSelecciona la tarea principal:")
         val tareaPrincipal = ge.obtenerTarea()
